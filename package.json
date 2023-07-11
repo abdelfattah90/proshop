@@ -8,7 +8,9 @@
     "start": "node server/server.js",
     "server": "nodemon server/server.js",
     "dev": "npm run dev --prefix client",
-    "all": "concurrently \"npm run server\" \"npm run dev\""
+    "all": "concurrently \"npm run server\" \"npm run dev\"",
+    "data:import": "node server/data/seeder.js",
+    "data:destroy": "node server/data/seeder.js -d"
   },
   "keywords": [],
   "author": "Ahmed Abdelfattah",
