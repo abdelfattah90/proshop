@@ -1,11 +1,21 @@
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 import Header from '../components/Header'
 import Product from '../components/Product'
 import Footer from '../components/Footer'
-import products from '../data/products'
 
 import { Container, Row, Col } from 'react-bootstrap'
 
 const HomePage = () => {
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const { data } = await axios.get('http://localhost:5000/api/products')
+      setProducts(data)
+    }
+    fetchProducts()
+  }, [])
   return (
     <>
       <Header />
