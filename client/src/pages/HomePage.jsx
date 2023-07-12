@@ -1,35 +1,38 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios'
+import { useGetProductsQuery } from '../slices/product_api_slice'
+import { Container, Row, Col } from 'react-bootstrap'
 import Header from '../components/Header'
 import Product from '../components/Product'
 import Footer from '../components/Footer'
-
-import { Container, Row, Col } from 'react-bootstrap'
+import Loader from '../components/Loader'
+import Message from '../components/Message'
 
 const HomePage = () => {
-  const [products, setProducts] = useState([])
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const { data } = await axios.get('http://localhost:5000/api/products')
-      setProducts(data)
-    }
-    fetchProducts()
-  }, [])
+  const { data: products, isLoading, error } = useGetProductsQuery()
   return (
     <>
       <Header />
       <main className='py-3'>
         <Container>
           <p className='p-1 text-center'>In the name of Allah the Merciful</p>
-          <h3>Latest Productes</h3>
-          <Row>
-            {products.map((product) => (
-              <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-                <Product product={product} />
-              </Col>
-            ))}
-          </Row>
+
+          {isLoading ? (
+            <Loader />
+          ) : error ? (
+            <Message variant='danger'>
+              {error?.data?.message || error.error}
+            </Message>
+          ) : (
+            <>
+              <h1>Latest Products</h1>
+              <Row>
+                {products.map((product) => (
+                  <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+                    <Product product={product} />
+                  </Col>
+                ))}
+              </Row>
+            </>
+          )}
         </Container>
       </main>
       <Footer />
