@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   Container,
@@ -16,6 +16,7 @@ import Header from '../components/Header'
 import Message from '../components/Message'
 
 const CartPage = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const cart = useSelector((state) => state.cart)
@@ -27,6 +28,10 @@ const CartPage = () => {
 
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id))
+  }
+
+  const checkoutHandler = () => {
+    navigate('/login?redirect=/shipping')
   }
 
   return (
@@ -107,6 +112,7 @@ const CartPage = () => {
                       type='button'
                       className='btn-block'
                       disabled={cartItems.length === 0}
+                      onClick={checkoutHandler}
                     >
                       Proceed To Checkout
                     </Button>
