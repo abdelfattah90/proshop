@@ -18,6 +18,7 @@ import Header from '../components/Header'
 import Rating from '../components/Rating'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
+import Footer from '../components/Footer'
 
 const ProductPage = () => {
   const { id: productId } = useParams()
@@ -138,6 +139,7 @@ const ProductPage = () => {
           )}
         </Container>
       </main>
+      <Footer />
     </>
   )
 }

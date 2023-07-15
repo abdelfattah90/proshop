@@ -2,16 +2,21 @@ import { Spinner } from 'react-bootstrap'
 
 const Loader = () => {
   return (
-    <Spinner
-      animation='border'
-      role='status'
-      style={{
-        width: '100px',
-        height: '100px',
-        margin: 'auto',
-        display: 'block',
-      }}
-    ></Spinner>
+    <>
+      <h3 className='text-center'>
+        That is a free cloud host, please wait... 😉
+      </h3>
+      <Spinner
+        animation='border'
+        role='status'
+        style={{
+          width: '100px',
+          height: '100px',
+          margin: 'auto',
+          display: 'block',
+        }}
+      ></Spinner>
+    </>
   )
 }
 

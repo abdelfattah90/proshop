@@ -14,6 +14,7 @@ import { FaTrash } from 'react-icons/fa'
 import { addToCart, removeFromCart } from '../slices/cart_slice'
 import Header from '../components/Header'
 import Message from '../components/Message'
+import Footer from '../components/Footer'
 
 const CartPage = () => {
   const navigate = useNavigate()
@@ -123,6 +124,7 @@ const CartPage = () => {
           </Row>
         </Container>
       </main>
+      <Footer />
     </>
   )
 }
